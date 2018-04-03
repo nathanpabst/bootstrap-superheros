@@ -6,10 +6,10 @@ const buildDomString = (superHeroesArray) => {
     let domString = "";
     superHeroesArray.forEach((superhero) => {
         domString += `<div id="superhero-card">`;
-        domString +=   `<h3>${superheroes.name}</h3>`;
+        domString +=   `<h3>${superhero.name}</h3>`;
         domString += `</div>`
     });           
-    printToDom(domString, "superheroes");
+    printToDom(domString, "superhero-card");
 };
 
 function executeThisCodeAfterFileLoaded (){
@@ -25,7 +25,7 @@ const startApplication = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", executeThisCodeAfterFileLoaded);
     myRequest.addEventListener("error", WTF);
-    myRequest.open("GET", "./db/superheroes.json");
+    myRequest.open("GET", "/db/superheroes.json");
     myRequest.send();
 };
 
