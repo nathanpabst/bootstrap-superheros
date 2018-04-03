@@ -19,6 +19,12 @@ h2 {
     color: #e23636;
 }
 
-.charImage {
+
+.maleCharImage {
+    border:#518CCA 5px solid;
+    border-radius: 100%;
+}
+.femaleCharImage {
+    border: pink 5px solid;
     border-radius: 100%;
 }
