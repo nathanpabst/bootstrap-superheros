@@ -5,9 +5,17 @@ const printToDom = (domString, divId) => {
 const buildDomString = (superHeroesArray) => {
     let domString = "";
     superHeroesArray.forEach((superhero) => {
-        domString += `<div id="superhero-card">`;
-        domString +=   `<h3>${superhero.name}</h3>`;
-        domString += `</div>`
+        domString += `<div class="col-md-3">`;
+        domString += `<div class="panel">`;
+        domString += `<div class="panel-heading">`;
+        domString += `<h3 class="panel-title">${superhero.name}</h3>`;
+        domString += `</div>`;
+        domString += `<div class="panel-body">`;
+        domString += `<img class="charImage" src="${superhero.image}">`;
+        domString += `<p class="charDescription">${superhero.description}`;
+        domString += `</div>`;
+        domString += `</div>`;   
+        domString += `</div>`;   
     });           
     printToDom(domString, "superhero-card");
 };
