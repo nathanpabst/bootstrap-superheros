@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jobs</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
-</head>
+
+    <title>Jobs</title>
+  </head>
 <body class="text-center">
+  <div id="selected-hero"></div>
     
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -32,14 +35,16 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-      <div class="btn-group">
+      <div class="btn-group" id="awesome-button">
           <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select a superhero <span class="caret"></span>
           </button>
-          <ul class="dropdown-menu" id="awesome-dropdown">
-            
-          </ul>
-
+          <ul class="dropdown-menu" id="awesome-dropdown"></ul>
+          </div>
+          
+          <div id="selected-hero"></div>
+          <div id="jobs"></div>
+          
       <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
