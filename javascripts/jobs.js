@@ -75,20 +75,20 @@ const megaSmash = (jobsArray, heroesArray) => {
 
 const getJobs = (heroesArray) =>{
     let jobsRequest = new XMLHttpRequest();
-  jobsRequest.addEventListener("load", jobsJSONConvert);
-  jobsRequest.addEventListener("error", executeThisCodeIfXHRFails);
-  jobsRequest.open("GET", "../db/jobs.json");
-  jobsRequest.send();
-}
-function jobsJSONConvert() {
-    const jobsData = JSON.parse(this.responseText).jobs;
-    const completeHeroes = megaSmash(jobsData, heroesArray);
-    displayJobs(completeHeroes);
+    jobsRequest.addEventListener("load", jobsJSONConvert);
+    jobsRequest.addEventListener("error", executeThisCodeIfXHRFails);
+    jobsRequest.open("GET", "../db/jobs.json");
+    jobsRequest.send();
 
+    function jobsJSONConvert() {
+        const jobsData = JSON.parse(this.responseText).jobs;
+        const completeHeroes = megaSmash(jobsData, heroesArray);
+        displayJobs(completeHeroes);
+}
 function loadFileforSingleHero() {
     const data = JSON.parse(this.responseText);
     displaySuperhero(data.superheroes);
-    }    
+}    
 
 function WTF() {
     console.log('Oops! Something went wrong.');
@@ -106,7 +106,7 @@ const genericHeroRequest = successFunction => {
     myRequest.addEventListener("error", WTF);
     myRequest.open("GET", "../db/superheroes.json");
     myRequest.send();
-}
+};
 
 const startApplication = () => {
     genericHeroRequest(executeThisCodeAfterFileLoaded);
