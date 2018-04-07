@@ -5,16 +5,18 @@ const printToDom = (domString, divId) => {
 };
 
 const buildDomString = (heroes) => {
+    console.log(heroes);
     let domString = "";
     for (let i = 0; i < heroes.length; i++) {
         domString += `<li>`;
-        domString += `<a class="hero-name" data-hero-id="${heroes[i].id}">${heroes.name}</a>`;
+        domString += `<a class="hero-name" data-hero-id="${heroes[i].id}">${heroes[i].name}</a>`;
         domString += `</li>`;
     }
     printToDom(domString, "awesome-dropdown");
 };
 
 const selectHero = (e) => {
+    // .dataset is an html property identified from the console. console.log(e.target) to find the avail. info
     selectedHero = e.target.dataset.heroId;
     document.getElementById('awesome-button').classList.add('hide');
     genericHeroRequest(loadFileforSingleHero);
@@ -48,6 +50,7 @@ const displaySuperhero = heroes => {
 };
 
 const displayJobs = (heroes) => {
+    debugger;
     let domString = "";
     heroes.forEach(hero => {
         if (hero.id === selectedHero){
@@ -75,38 +78,40 @@ const megaSmash = (jobsArray, heroesArray) => {
 
 const getJobs = (heroesArray) =>{
     let jobsRequest = new XMLHttpRequest();
-  jobsRequest.addEventListener("load", jobsJSONConvert);
-  jobsRequest.addEventListener("error", executeThisCodeIfXHRFails);
-  jobsRequest.open("GET", "../db/jobs.json");
-  jobsRequest.send();
+    jobsRequest.addEventListener("load", jobsJSONConvert);
+    jobsRequest.addEventListener("error", WTF);
+    jobsRequest.open("GET", "../db/jobs.json");
+    jobsRequest.send();
+
+    function jobsJSONConvert() {
+        const jobsData = JSON.parse(this.responseText).jobs;
+        const completeHeroes = megaSmash(jobsData, heroesArray);
+        displayJobs(completeHeroes);
+    }
 }
-function jobsJSONConvert() {
-    const jobsData = JSON.parse(this.responseText).jobs;
-    const completeHeroes = megaSmash(jobsData, heroesArray);
-    displayJobs(completeHeroes);
 
 function loadFileforSingleHero() {
     const data = JSON.parse(this.responseText);
     displaySuperhero(data.superheroes);
-    }    
+}    
 
 function WTF() {
     console.log('Oops! Something went wrong.');
 }
-
+// parsing json data into an object for JS and assigning to the variable
 function executeThisCodeAfterFileLoaded() {
     const data = JSON.parse(this.responseText);
     buildDomString(data.superheroes);
-    addheroSelectionEventListeners();
+    addheroSelectionEventListener();
 }
-
+// 
 const genericHeroRequest = successFunction => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", successFunction);
     myRequest.addEventListener("error", WTF);
     myRequest.open("GET", "../db/superheroes.json");
     myRequest.send();
-}
+};
 
 const startApplication = () => {
     genericHeroRequest(executeThisCodeAfterFileLoaded);
